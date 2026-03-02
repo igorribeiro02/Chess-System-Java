@@ -30,5 +30,12 @@ public class Board {
 		this.columns = columns;
 	}
 	
+	public Piece piece(int row, int column) {
+		return pieces[row][column]; // retorna a peça que está na posição da matriz
+	}
+	//retorno a peça pela posição, ou seja, eu passo a posição e retorno a peça que está na posição da matriz
+	public Piece piece(Position position) {
+		return pieces[position.getRow()][position.getColumn()]; // retorna a peça que está na posição da matriz
+	}
 
 }
