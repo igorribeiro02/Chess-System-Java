@@ -38,4 +38,10 @@ public class Board {
 		return pieces[position.getRow()][position.getColumn()]; // retorna a peça que está na posição da matriz
 	}
 
+	public void placePiece(Piece piece, Position position) {
+		// matriz de peças do tabuleiro, ou seja, a matriz de peças do tabuleiro é preenchida com as peças do chesspiece, ou seja, a matriz de peças do chesspiece é preenchida com as peças do tabuleiro
+		pieces[position.getRow()][position.getColumn()] = piece; // coloca a peça na posição da matriz
+		piece.position = position; // coloca a posição da peça
+		
+	}
 }
