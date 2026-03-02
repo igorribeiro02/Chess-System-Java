@@ -31,6 +31,8 @@ public class ChessMatch {
 		//metodo responsavel por colocar as peças no tabuleiro, ou seja, para colocar as peças do chesspiece no tabuleiro
 		board.placePiece(new Rook(board, Color.WHITE), new Position(2,1));
 		board.placePiece(new King(board, Color.WHITE), new Position(0,4));
+		board.placePiece(new King(board, Color.WHITE), new Position(7,4));
+		
 	}
 	
 
