@@ -1,6 +1,7 @@
 package chess.pieces;
 
 import boardgame.Board;
+import boardgame.Position;
 import chess.ChessPiece;
 import chess.Color;
 
@@ -21,7 +22,58 @@ public class Rook extends ChessPiece{
 	public boolean[][] possibleMoves() {
 		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()]; // cria uma matriz de booleanos com o mesmo tamanho do tabuleiro
 		
-		 return mat;
+		Position p = new Position(0,0); // cria uma posição auxiliar para verificar as posições possíveis
+		
+		//acima 
+		p.setValues(position.getRow() - 1, position.getColumn()); // seta a posição para a posição acima da peça
+		 while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) { // enquanto a posição existir e não houver uma peça na posição
+			 mat[p.getRow()][p.getColumn()] = true; // marca a posição como possível
+			 p.setRow(p.getRow() - 1); // move a posição para cima
+		 }
+		 //marca em verddadeiro as posicções acima da peça
+		 if(getBoard().positionExists(p) && isThereOpponentPiece(p)) { // se a posição existir e houver uma peça adversária na posição
+			 mat[p.getRow()][p.getColumn()] = true; // marca a posição como possível
+		 }
+		 
+		 //esquerda
+		 
+		//acima 
+			p.setValues(position.getRow() - 1, position.getColumn()); // seta a posição para a posição acima da peça
+			 while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) { // enquanto a posição existir e não houver uma peça na posição
+				 mat[p.getRow()][p.getColumn()] = true; // marca a posição como possível
+				 p.setRow(p.getColumn() - 1); // move a posição para cima
+			 }
+			 //marca em verddadeiro as posicções acima da peça
+			 if(getBoard().positionExists(p) && isThereOpponentPiece(p)) { // se a posição existir e houver uma peça adversária na posição
+				 mat[p.getRow()][p.getColumn()] = true; // marca a posição como possível
+			 }
+			 
+			 // direita
+			//acima 
+				p.setValues(position.getRow() , position.getColumn() + 1); // seta a posição para a posição acima da peça
+				 while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) { // enquanto a posição existir e não houver uma peça na posição
+					 mat[p.getRow()][p.getColumn()] = true; // marca a posição como possível
+					 p.setRow(p.getRow() + 1); // move a posição para cima
+				 }
+				 //marca em verddadeiro as posicções acima da peça
+				 if(getBoard().positionExists(p) && isThereOpponentPiece(p)) { // se a posição existir e houver uma peça adversária na posição
+					 mat[p.getRow()][p.getColumn()] = true; // marca a posição como possível
+				 }
+				 
+				 //baixo 
+					p.setValues(position.getRow() + 1, position.getColumn()); // seta a posição para a posição acima da peça
+					 while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) { // enquanto a posição existir e não houver uma peça na posição
+						 mat[p.getRow()][p.getColumn()] = true; // marca a posição como possível
+						 p.setRow(p.getRow() + 1); // move a posição para cima
+					 }
+					 //marca em verddadeiro as posicções acima da peça
+					 if(getBoard().positionExists(p) && isThereOpponentPiece(p)) { // se a posição existir e houver uma peça adversária na posição
+						 mat[p.getRow()][p.getColumn()] = true; // marca a posição como possível
+					 }
+		
+		return mat;
+		 
+		 
 	}
 	
 
