@@ -1,5 +1,8 @@
 package chess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import boardgame.Board;
 import boardgame.Piece;
 import boardgame.Position;
@@ -11,6 +14,9 @@ public class ChessMatch {
 	private Board board;
 	private int turn;
 	private Color currentPlayer;
+	//deixei aqui em cima para serem automaticamente atualizadas
+	private List<Piece> piecesOnTheBoard = new ArrayList<>(); // peças que estão no tabuleiro
+	private List<Piece> capturedPieces = new ArrayList<>(); // peças que foram capturadas
 	
 	public ChessMatch() {
 		board = new Board(8, 8);
@@ -55,9 +61,14 @@ public class ChessMatch {
 	}
 	
 	private Piece makeMove(Position source, Position target) {
-		Piece p = board.removePiece(source);
-		Piece capturedPiece = board.removePiece(target);
+		Piece p = board.removePiece(source); 
+		Piece capturedPiece = board.removePiece(target); // possivel peça capturada, ou seja, peça que estava na posição de destino, ou seja, peça que foi retirada do tabuleiro, ou seja, peça que foi capturada pelo adversário
 		board.placePiece(p, target);
+		// testar se a peça captura é diferente de null, ou seja, se existe uma peça capturada, ou seja, se existe uma peça que foi retirada do tabuleiro, ou seja, se existe uma peça que foi capturada pelo adversário
+		if(capturedPiece != null) {
+			piecesOnTheBoard.remove(capturedPiece); // remove a peça capturada da lista de peças no tabuleiro
+			capturedPieces.add(capturedPiece); // adiciona a peça capturada na lista de peças capturadas
+		}
 		return capturedPiece;
 	}
 	
@@ -86,7 +97,9 @@ public class ChessMatch {
 	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
+		piecesOnTheBoard.add(piece); // adiciona a peça na lista de peças no tabuleiro
 	}
+	
 	
 	private void initialSetup() {
 		placeNewPiece('c', 1, new Rook(board, Color.WHITE));
